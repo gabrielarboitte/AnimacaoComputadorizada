@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://6ofmk7a6c4bu"]
+
+[ext_resource type="Script" uid="uid://cy6iaj8ou52ch" path="res://path_3d.gd" id="1_a202f"]
+[ext_resource type="Script" uid="uid://cut1kuol17kxs" path="res://h_slider.gd" id="2_noarx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s1fef"]
+albedo_color = Color(0.6405313, 0.62274593, 1, 1)
+
+[sub_resource type="Curve3D" id="Curve3D_noarx"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.008725643, 0.13961434, 0, 0, 0, 0, 0, 0, 0, 0.6401255, -0.13314652, 0.011178561, 0, 0, 0, 0, 0, 0, 1.1599288, -0.28538013, 0.018120183, 0, 0, 0, 0, 0, 0, 1.544739, -0.39740455, 0.022114325, 0, 0, 0, 0, 0, 0, 2.010124, -0.4787321, 0.028002918, 0, 0, 0, 0, 0, 0, 2.5821033, -0.3871534, 0.031586513, 0, 0, 0, 0, 0, 0, 3.02908, -0.2681011, 0.034108773, 0, 0, 0, 0, 0, 0, 3.444486, -0.113970876, 0.036555067, 0, 0, 0, 0, 0, 0, 4.002187, 0.13581753, 0.039958954),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 9
+
+[sub_resource type="SphereMesh" id="SphereMesh_s1fef"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qsuaf"]
+sky_top_color = Color(4.813075e-08, 0.5116148, 0.5386109, 1)
+
+[sub_resource type="Sky" id="Sky_khhxn"]
+sky_material = SubResource("ProceduralSkyMaterial_qsuaf")
+
+[sub_resource type="Environment" id="Environment_s1fef"]
+background_mode = 2
+sky = SubResource("Sky_khhxn")
+
+[node name="Node3D" type="Node3D" unique_id=489634843]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1983299091]
+size = Vector3(17, 1, 16)
+material = SubResource("StandardMaterial3D_s1fef")
+
+[node name="Path3D" type="Path3D" parent="." unique_id=872777699 node_paths=PackedStringArray("path_follow_3d", "h_slider")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.00152, 1.8529544, 0)
+curve = SubResource("Curve3D_noarx")
+script = ExtResource("1_a202f")
+path_follow_3d = NodePath("PathFollow3D")
+h_slider = NodePath("../HSlider")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=87067541]
+transform = Transform3D(-0.017701231, 0.3964564, -0.91788006, -4.4702862e-08, 0.918024, 0.39651844, 0.9998293, 0.0070190057, -0.016250363, 0.008725643, 0.13961434, 0)
+loop = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D/PathFollow3D" unique_id=1083280168]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+mesh = SubResource("SphereMesh_s1fef")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1714373816]
+transform = Transform3D(1, 0, 0, 0, 0.9951236, 0.09863584, 0, -0.09863584, 0.9951236, 0, 2.0273623, 3.1029625)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=720125403]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.1124563, 0)
+light_energy = 8.68
+omni_range = 14.853574
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=536151242]
+environment = SubResource("Environment_s1fef")
+
+[node name="HSlider" type="HSlider" parent="." unique_id=1962213081 node_paths=PackedStringArray("label")]
+offset_left = 11.0
+offset_top = 69.0
+offset_right = 719.0
+offset_bottom = 85.0
+min_value = 1.0
+step = 0.0
+value = 10.0
+rounded = true
+script = ExtResource("2_noarx")
+label = NodePath("Label")
+
+[node name="Label" type="Label" parent="HSlider" unique_id=230705559]
+layout_mode = 0
+offset_top = -36.0
+offset_right = 60.869568
+offset_bottom = -1.0
+theme_override_colors/font_color = Color(1, 0.80784315, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 18
+text = "teste"
+
+[node name="Label" type="Label" parent="." unique_id=1357904923]
+offset_left = 11.0
+offset_right = 51.0
+offset_bottom = 23.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 6
+theme_override_constants/shadow_outline_size = 5
+theme_override_font_sizes/font_size = 21
+text = "Curva paramétrica de Bézier utilizada para simular movimento de Pêndulo"
