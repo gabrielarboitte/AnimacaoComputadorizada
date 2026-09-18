@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://d00lmgtdgkwy8"]
 
+[ext_resource type="Script" uid="uid://dt3tgt6ffgk2c" path="res://smoker.gd" id="1_w3dni"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wcthm"]
 transparency = 1
 vertex_color_use_as_albedo = true
@@ -47,3 +49,6 @@ collision_base_size = 1.0
 visibility_aabb = AABB(-8.5, -4, -8, 17, 8, 16)
 process_material = SubResource("ParticleProcessMaterial_r644g")
 draw_pass_1 = SubResource("BoxMesh_hj41y")
+script = ExtResource("1_w3dni")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

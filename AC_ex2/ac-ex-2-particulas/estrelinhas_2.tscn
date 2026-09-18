@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d2qpxgcuf1s25"]
 
 [ext_resource type="Texture2D" uid="uid://pw7so60lkimg" path="res://undertaledeterminationstar.png" id="1_77vok"]
+[ext_resource type="Script" uid="uid://b2kkl068j4cbq" path="res://estrelinhas_2.gd" id="2_8ejux"]
 
 [sub_resource type="Curve" id="Curve_xbcfn"]
 _data = [Vector2(0, 0.89887637), 0.0, 0.0, 0, 0, Vector2(0.50287354, 0.16911769), 0.0, 0.0, 0, 0, Vector2(0.7701149, 0.5168539), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -85,3 +86,6 @@ collision_base_size = 1.0
 visibility_aabb = AABB(-8.5, -4, -8, 17, 8, 16)
 process_material = SubResource("ParticleProcessMaterial_77vok")
 draw_pass_1 = SubResource("QuadMesh_8ejux")
+script = ExtResource("2_8ejux")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

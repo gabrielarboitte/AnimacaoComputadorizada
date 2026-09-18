@@ -1,5 +1,5 @@
 extends Node3D
-
+#referencia as scenes
 @export var smoker: PackedScene
 @export var estrelinhas: PackedScene
 @export var estrelinhas_2: PackedScene
@@ -7,17 +7,19 @@ extends Node3D
 
 var parti_atual: PackedScene
 
+#set particula default para evitar erros
 func _ready() -> void:
 	parti_atual = estrelinhas
-	print(parti_atual)
-
+	
+#ao apertar botao do mouse esquerdo instancia a particula selecionada e adiciona à scene tree.!
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("mouse_esq"):
 		var particula = parti_atual.instantiate()
 		
 		add_child(particula)
-		particula.restart()
+		particula.emitting = true
 
+#o option button emite signal ao escolher outro item, entao atualiza a ref particula atual
 func _on_option_button_item_selected(index: int) -> void:
 	match index:
 		0:#por gabriel A. Arboitte
