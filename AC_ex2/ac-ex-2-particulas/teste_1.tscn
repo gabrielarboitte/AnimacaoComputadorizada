@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://cyen7alk5dofe"]
+
+[ext_resource type="Script" uid="uid://byubgxbwqh0yk" path="res://main.gd" id="1_p1jct"]
+[ext_resource type="PackedScene" uid="uid://d00lmgtdgkwy8" path="res://smoker.tscn" id="2_r644g"]
+[ext_resource type="PackedScene" uid="uid://dm5tu77p7yl30" path="res://estrelinhas.tscn" id="3_hj41y"]
+[ext_resource type="PackedScene" uid="uid://d2qpxgcuf1s25" path="res://estrelinhas_2.tscn" id="4_mprkn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_khhxn"]
+size = Vector3(17, 1, 16)
+
+[node name="main" type="Node3D" unique_id=1567935909 node_paths=PackedStringArray("option_button")]
+script = ExtResource("1_p1jct")
+smoker = ExtResource("2_r644g")
+estrelinhas = ExtResource("3_hj41y")
+estrelinhas_2 = ExtResource("4_mprkn")
+option_button = NodePath("VBoxContainer/OptionButton")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2070134602]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -893.0
+offset_bottom = -517.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=249321693]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8980392, 0.7058824, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.12, 0.106, 0, 0.7882353)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 3
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 18
+text = "Escolha uma das partículas!"
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer" unique_id=368979362]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8980392, 0.7058824, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_constants/line_spacing = 3
+theme_override_font_sizes/font_size = 18
+item_count = 3
+popup/item_0/text = "Fumaça"
+popup/item_0/id = 0
+popup/item_1/text = "Estrelas 1"
+popup/item_1/id = 1
+popup/item_2/text = "Estrelas 2"
+popup/item_2/id = 2
+
+[node name="chao" type="MeshInstance3D" parent="." unique_id=1696183214]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.70000005, 0)
+mesh = SubResource("BoxMesh_khhxn")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="." unique_id=1183592145]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
+size = Vector3(17, 1, 16)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1839690303]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 7.423888, 12)
+directional_shadow_mode = 0
+sky_mode = 1
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1756478393]
+transform = Transform3D(-1, 7.1054274e-15, -8.7422784e-08, -5.0143644e-08, 0.81915206, 0.57357645, 7.1612554e-08, 0.57357645, -0.81915206, 0, 8.5, -12.2)
+
+[connection signal="item_selected" from="VBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
